@@ -12,9 +12,9 @@ class Player(BaseTimestampModel):
     jersey_no = models.CharField(max_length=50, null=True, blank=True)
     image = models.ImageField(
         upload_to="player/images/", null=True, blank=True)
-    country = models.CharField(max_length=50)
+    country = models.CharField(max_length=50, null=True, blank=True)
     team = models.ForeignKey(
-        Team, on_delete=models.CASCADE, null=True, blank=True)
+        Team, on_delete=models.CASCADE)
     slug = models.SlugField(max_length=40, null=True, blank=True)
 
     def __str__(self):
