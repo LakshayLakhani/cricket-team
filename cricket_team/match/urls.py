@@ -1,10 +1,7 @@
-# from django.conf.urls import url
+from django.conf.urls import url
 
-# from .views import (
-#     comment_thread,
-#     comment_delete)
+from match.views import add_match
 
-# urlpatterns = [
-#     url(r'^(?P<id>\d+)/$', comment_thread, name='thread'),
-#     url(r'^(?P<id>\d+)/delete/$', comment_delete, name='delete'),
-# ]
+urlpatterns = [
+    url(r'^add/$', add_match, name='add_match'),
+]
