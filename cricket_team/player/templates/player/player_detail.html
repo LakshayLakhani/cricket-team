@@ -1,14 +1,33 @@
 {% extends "base.html" %}
 {% load static %}
 
-
 {% block content %}
-<h1>{{ object.first_name }} {{ object.last_name }}</h1>
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+<div class="well">
+<h1 style="text-align: center;">{{ object.first_name }} {{ object.last_name }}</h1>
+<div class="row">
+<div class="col-md-offset-3 col-md-3">
 {% if player.image %}
 <img class="card-img-top" src='{{ player.image.url }}' style="height: 150px;" alt="...">
 {% else %}
   <img src="{% static 'images/No-Image-Found.png' %}" style="height: 150px;" class="card-img-top" alt="Player Not Found">
 {% endif %}
+<label>Country: {{ player.country }}</label>
+<label>Runs: {{ player.jersey_no }}</label>
+<label>Highest Score: {{ player.history.highest_scores }}</label>
+
+<label>Matches: {{ player.history.matches }}</label>
+<label>Runs: {{ player.history.run }}</label>
+<label>Highest Score: {{ player.history.highest_scores }}</label>
+<label>Fifties: {{ player.history.fifties }}</label>
+<label>Hundreds: {{ player.history.hundreds }}</label>
+
+</div>
+</div>
+</div>
+</div>
+</div>
 
 <br>
 {% endblock %}
