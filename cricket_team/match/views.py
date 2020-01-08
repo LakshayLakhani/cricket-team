@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
@@ -41,8 +41,7 @@ def add_match(request):
             obj.score = score
             obj.save()
 
-            messages.add_message(request, messages.SUCCESS, "We have sent you an email, please confirm your email address to complete registration!.")
-            return redirect("login")
+            return redirect("match_list")
     else:
         form = AddMatchForm()
     return render(request, 'match/add.html', {'form': form})

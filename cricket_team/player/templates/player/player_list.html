@@ -17,7 +17,7 @@
 
     <div class="col-md-3 col-md-offset-1 well" style="width: 25rem;">
         {% if obj.image %}
-        <img class="card-img-top" src='{{ obj.image.url }}' style="height: 140px;" alt="...">
+        <img class="card-img-top" src='{{ obj.image.url }}' style="height: 140px; width: 200px;" alt="...">
         {% else %}
           <img src="{% static 'images/No-Image-Found.png' %}" style="height: 140px;" class="card-img-top" alt="Logo Not Found">
         {% endif %}

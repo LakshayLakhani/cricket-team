@@ -15,8 +15,8 @@ class AddTeamForm(forms.ModelForm):
         super(AddTeamForm, self).__init__(*args, **kwargs)
         self.fields['name'].widget.attrs.update({'class': 'form-control', 'required':True})
         self.fields['logo'].widget.attrs.update({'class': 'form-control', 'required':True})
-        self.fields['club'].widget.attrs.update({'class': 'form-control', 'required':True})
-        self.fields['state'].widget.attrs.update({'class': 'form-control', 'required':True})
+        self.fields['club'].widget.attrs.update({'class': 'form-control'})
+        self.fields['state'].widget.attrs.update({'class': 'form-control'})
 
     def clean_name(self):
         cleaned_data = super(AddTeamForm, self).clean()
