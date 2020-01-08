@@ -4,8 +4,6 @@ from team.models import Team
 
 
 class AddTeamForm(forms.ModelForm):
-    # team_1_score = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'required':'required'}))
-    # team_2_score = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'required':'required'}))
 
     class Meta:
         model = Team
@@ -13,8 +11,10 @@ class AddTeamForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(AddTeamForm, self).__init__(*args, **kwargs)
-        self.fields['name'].widget.attrs.update({'class': 'form-control', 'required':True})
-        self.fields['logo'].widget.attrs.update({'class': 'form-control', 'required':True})
+        self.fields['name'].widget.attrs.update(
+            {'class': 'form-control', 'required': True})
+        self.fields['logo'].widget.attrs.update(
+            {'class': 'form-control', 'required': True})
         self.fields['club'].widget.attrs.update({'class': 'form-control'})
         self.fields['state'].widget.attrs.update({'class': 'form-control'})
 
@@ -24,6 +24,5 @@ class AddTeamForm(forms.ModelForm):
 
         if Team.objects.filter(name=name).exists():
             raise forms.ValidationError("This name already exists.")
-
 
         return self.cleaned_data['name']

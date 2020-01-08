@@ -14,30 +14,22 @@ class TeamListView(ListView):
 
 
 class TeamDetailView(DetailView):
-	model = Team
+    model = Team
 
-	def get_context_data(self, *args, **kwargs):
-		context = super(TeamDetailView, self).get_context_data(*args, **kwargs)
-		obj = self.get_object()
-		players = Player.objects.filter(team=obj)
-		context["players"] = players
-		return context
+    def get_context_data(self, *args, **kwargs):
+        context = super(TeamDetailView, self).get_context_data(*args, **kwargs)
+        obj = self.get_object()
+        players = Player.objects.filter(team=obj)
+        context["players"] = players
+        return context
 
 
 def AddTeam(request):
     form = AddTeamForm(request.POST or None, request.FILES)
     if request.method == 'POST':
         if form.is_valid():
-            # team1_score = form.cleaned_data["team_1_score"]
-            # team2_score = form.cleaned_data["team_2_score"]
             obj = form.save()
-            # messages.add_message(request, messages.SUCCESS, "Team has been")
             return redirect("team_list")
     else:
         form = AddTeamForm()
     return render(request, 'team/add_team.html', {'form': form})
-
-
-	
-
-

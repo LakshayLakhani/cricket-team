@@ -7,7 +7,6 @@ from team.models import Team
 
 
 class PlayerHistory(BaseTimestampModel):
-    # player = models.OneToOneField(Player, on_delete=models.CASCADE)
     matches = models.IntegerField(null=True, blank=True)
     run = models.IntegerField(null=True, blank=True)
     highest_scores = models.IntegerField(null=True, blank=True)

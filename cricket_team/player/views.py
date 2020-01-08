@@ -8,11 +8,6 @@ from player.models import Player
 from player.forms import AddPlayerForm
 
 
-# class PlayerListView(ListView):
-#     model = Player
-#     queryset = Player.objects.all()
-#     template_name = "player/player_list.html"
-
 def PlayerListView(request):
     model = Player
     object_ = Player.objects.all()
@@ -21,7 +16,7 @@ def PlayerListView(request):
 
 
 class PlayerDetailView(DetailView):
-	model = Player
+    model = Player
 
 
 def AddPlayer(request):
