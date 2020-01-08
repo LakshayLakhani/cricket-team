@@ -31,8 +31,8 @@ def AddTeam(request):
             # team1_score = form.cleaned_data["team_1_score"]
             # team2_score = form.cleaned_data["team_2_score"]
             obj = form.save()
-            # messages.add_message(request, messages.SUCCESS, "We have sent you an email, please confirm your email address to complete registration!.")
-            return redirect("add_team")
+            # messages.add_message(request, messages.SUCCESS, "Team has been")
+            return redirect("team_list")
     else:
         form = AddTeamForm()
     return render(request, 'team/add_team.html', {'form': form})

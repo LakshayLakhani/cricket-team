@@ -1,26 +1,27 @@
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.urls import reverse
+
 
 from player.models import Player
 from player.forms import AddPlayerForm
 
 
-class PlayerListView(ListView):
+# class PlayerListView(ListView):
+#     model = Player
+#     queryset = Player.objects.all()
+#     template_name = "player/player_list.html"
+
+def PlayerListView(request):
     model = Player
-    queryset = Player.objects.all()
-    template_name = "player/player_list.html"
+    object_ = Player.objects.all()
+
+    return render(request, "player/player_list.html", {"object_list": object_})
 
 
 class PlayerDetailView(DetailView):
 	model = Player
-
-	# def get_context_data(self, *args, **kwargs):
-	# 	context = super(PlayerDetailView, self).get_context_data(*args, **kwargs)
-	# 	obj = self.get_object()
-	# 	players = Player.objects.filter(team=obj)
-	# 	context["players"] = players
-	# 	return context
 
 
 def AddPlayer(request):
@@ -28,13 +29,8 @@ def AddPlayer(request):
     if request.method == 'POST':
         if form.is_valid():
             obj = form.save()
-            # messages.add_message(request, messages.SUCCESS, "We have sent you an email, please confirm your email address to complete registration!.")
-            return redirect("add_player")
+            slug = obj.team.slug
+            return redirect("team_detail", obj.team.slug)
     else:
         form = AddPlayerForm()
     return render(request, 'player/add_player.html', {'form': form})
-
-
-	
-
-

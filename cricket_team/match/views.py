@@ -1,8 +1,25 @@
 from django.shortcuts import render
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 
 from match.forms import AddMatchForm
-from match.models import Points
+from match.models import Points, Match
 # Create your views here.
+
+# class MatchListView(ListView):
+#     model = Match
+#     queryset = Match.objects.all()
+#     template_name = "match/match_list.html"
+
+def MatchListView(request):
+    model = Match
+    object_ = Match.objects.all()
+
+    return render(request, "match/match_list.html", {"object_list":object_})
+
+
+class MatchDetailView(DetailView):
+    model = Match
 
 def add_match(request):
     form = AddMatchForm(request.POST or None)
@@ -15,13 +32,14 @@ def add_match(request):
                 obj.winner = obj.team_1
             else:
                 obj.winner = obj.team_2
-            obj.save()
-
+            
             score = Points()
-            score.match = obj
             score.team1 = team1_score
             score.team2 = team2_score
             score.save()
+
+            obj.score = score
+            obj.save()
 
             messages.add_message(request, messages.SUCCESS, "We have sent you an email, please confirm your email address to complete registration!.")
             return redirect("login")

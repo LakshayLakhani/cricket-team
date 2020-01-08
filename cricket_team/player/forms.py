@@ -19,13 +19,3 @@ class AddPlayerForm(forms.ModelForm):
         self.fields['country'].widget.attrs.update({'class': 'form-control', 'required':True})
         self.fields['jersey_no'].widget.attrs.update({'class': 'form-control', 'required':True})
         self.fields['team'].widget.attrs.update({'class': 'form-control', 'required':True})
-
-    # def clean_name(self):
-    #     cleaned_data = super(AddTeamForm, self).clean()
-    #     name = cleaned_data.get("name")
-
-    #     if Team.objects.filter(name=name).exists():
-    #         raise forms.ValidationError("This name already exists.")
-
-
-    #     return self.cleaned_data['name']

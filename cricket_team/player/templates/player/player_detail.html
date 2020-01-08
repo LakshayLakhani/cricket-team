@@ -13,6 +13,7 @@
 {% else %}
   <img src="{% static 'images/No-Image-Found.png' %}" style="height: 150px;" class="card-img-top" alt="Player Not Found">
 {% endif %}
+<br>
 <label>Country: {{ player.country }}</label>
 <label>Runs: {{ player.jersey_no }}</label>
 <label>Highest Score: {{ player.history.highest_scores }}</label>

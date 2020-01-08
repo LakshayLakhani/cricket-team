@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<h1>Available Matches</h1>
+<br>
+<div class="row">
+	{% for obj in object_list %}
+    
+    <div class="col-md-3 well col-md-offset-1" style="width: 25rem;">
+        {% if obj.team_1.logo %}
+        <img class="card-img-top" src='{{ obj.team_1.logo.url }}' style="height: 60px;" alt="...">
+        {% else %}
+          <img src="{% static 'images/No-Image-Found.png' %}" style="height: 60px;" class="card-img-top" alt="Logo Not Found">
+        {% endif %}
+                {% if obj.team_2.logo %}
+        <img class="card-img-top" src='{{ obj.team_2.logo.url }}' style="height: 60px;" alt="...">
+        {% else %}
+          <img src="{% static 'images/No-Image-Found.png' %}" style="height: 60px;" class="card-img-top" alt="Logo Not Found">
+        {% endif %}
+
+          <div class="card-body">
+            <h4 class="card-title">{{ obj.team_1 }} v/s {{obj.team_2}}</h4>
+            <a href="{% url 'match_detail' obj.id %}" class="btn btn-primary">Details</a>
+          </div>
+    </div>
+
+	{% endfor %}
+<div>
+{% endblock %}
