@@ -11,7 +11,6 @@ def add_match(request):
             team1_score = form.cleaned_data["team_1_score"]
             team2_score = form.cleaned_data["team_2_score"]
             obj = form.save()
-
             if team1_score > team2_score:
                 obj.winner = obj.team_1
             else:

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<h1>{{ object.first_name }} {{ object.last_name }}</h1>
+{% if player.image %}
+<img class="card-img-top" src='{{ player.image.url }}' style="height: 150px;" alt="...">
+{% else %}
+  <img src="{% static 'images/No-Image-Found.png' %}" style="height: 150px;" class="card-img-top" alt="Player Not Found">
+{% endif %}
+
+<br>
+{% endblock %}

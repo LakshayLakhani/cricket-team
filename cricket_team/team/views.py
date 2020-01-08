@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
 from team.models import Team
 from player.models import Player
+from team.forms import AddTeamForm
 
 
 class TeamListView(ListView):
@@ -22,5 +23,21 @@ class TeamDetailView(DetailView):
 		context["players"] = players
 		return context
 
+
+def AddTeam(request):
+    form = AddTeamForm(request.POST or None, request.FILES)
+    if request.method == 'POST':
+        if form.is_valid():
+            # team1_score = form.cleaned_data["team_1_score"]
+            # team2_score = form.cleaned_data["team_2_score"]
+            obj = form.save()
+            # messages.add_message(request, messages.SUCCESS, "We have sent you an email, please confirm your email address to complete registration!.")
+            return redirect("add_team")
+    else:
+        form = AddTeamForm()
+    return render(request, 'team/add_team.html', {'form': form})
+
+
+	
 
 

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<h1>Available Players</h1>
+<br>
+<div class="row">
+	{% for obj in object_list %}
+    
+    <div class="col-md-3 card" style="width: 25rem;">
+        {% if obj.image %}
+        <img class="card-img-top" src='{{ obj.image.url }}' style="height: 150px;" alt="...">
+        {% else %}
+          <img src="{% static 'images/No-Image-Found.png' %}" style="height: 150px;" class="card-img-top" alt="Logo Not Found">
+        {% endif %}
+          <div class="card-body">
+            <h4 class="card-title">{{ obj.first_name }}{{obj.last_name}}</h4>
+            <a href="#" class="btn btn-primary">Details</a>
+          </div>
+    </div>
+
+	{% endfor %}
+<div>
+{% endblock %}

@@ -4,8 +4,6 @@ from shared.models import BaseTimestampModel
 from team.models import Team
 
 
-
-
 class Match(BaseTimestampModel):
     team_1 = models.ForeignKey(
         Team, on_delete=models.CASCADE, null=True, blank=True, related_name="team1")
